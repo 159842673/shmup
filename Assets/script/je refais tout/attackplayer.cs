@@ -1,27 +1,23 @@
 using UnityEngine;
 
-public class enemy : MonoBehaviour
+public class attackplayer : MonoBehaviour
 {
     Rigidbody2D rb;
-    
-    //cara de l'ennemi
+    public float xspd;
+    public float yspd;
+
     public bool canshoot;
     public float cadence;
     public float pv;
-    public float moveSpeed = 4;
-    private void FixedUpdate()
-    {
-        Vector2 pos = transform.position;
-        pos.x -= moveSpeed * Time.fixedDeltaTime;
-        if (pos.x < -11)
-        {
-            Destroy(gameObject);
-        }
-        transform.position = pos;
-    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+    }
+    void Update()
+    {
+        rb.velocity = new Vector2(xspd, yspd * -1);
 
     }
     private void OnCollisionEnter2D(Collision2D col)
@@ -30,7 +26,6 @@ public class enemy : MonoBehaviour
         {
             col.gameObject.GetComponent<player>().Damage();
             Die();
-            
         }
     }
     void Die()
@@ -38,4 +33,3 @@ public class enemy : MonoBehaviour
         Destroy(gameObject);
     }
 }
-

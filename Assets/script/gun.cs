@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class gun : MonoBehaviour
 {
+    public Transform jetire;
     public Bullet bullet;
     Vector2 direction;
     public bool autoShoot = false;
@@ -11,9 +12,7 @@ public class gun : MonoBehaviour
     public float shootdelayseconds = 0.0f;
     float shoottimer = 0f;
     float delaytimer = 0f;
-
-    // Start is called before the first frame update
-    void Start()
+    void Update()
     {
         direction = (transform.localRotation * Vector2.right).normalized;
         
@@ -37,15 +36,9 @@ public class gun : MonoBehaviour
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void Shoot()
     {
-        GameObject go = Instantiate(bullet.gameObject, transform.position, Quaternion.identity);
+        GameObject go = Instantiate(bullet.gameObject, jetire.position, Quaternion.identity);
         Bullet gobullet = go.GetComponent<Bullet>();
         gobullet.direction = direction;
     }

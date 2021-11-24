@@ -23,7 +23,7 @@ public class movesin : MonoBehaviour
         float sin = Mathf.Sin(pos.x) * amplitude;
         if (inverted)
         {
-            sin *= -1;
+            sin *= 1;
         }
         pos.y = sincenterY + sin;
 

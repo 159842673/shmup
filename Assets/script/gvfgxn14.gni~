@@ -1,0 +1,35 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+public class spawn : enemy
+{
+    public GameObject ennemyprefab;
+    public float minInstantiateValue;
+    public float maxInstantiateValue;
+    public float spawnerx;
+    //AIDE MOI
+
+    private void Start()
+    {
+        InvokeRepeating("instantiatenemy", 4f, 5f);
+
+    }
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        //AIDE MOI
+        if (col.gameObject.tag == "player")
+        {
+            instantiatenemy();
+        
+        }
+
+    }
+
+    void instantiatenemy()
+    {
+        Vector3 enemypos = new Vector3(spawnerx, Random.Range(minInstantiateValue, maxInstantiateValue));
+        Instantiate(ennemyprefab, enemypos, Quaternion.identity);
+    }
+
+    
+
+}
