@@ -34,6 +34,8 @@ public class enemy : MonoBehaviour
         if (pv <= 0)
         {
             Die();
+
+
         }
     }
     void Die()
