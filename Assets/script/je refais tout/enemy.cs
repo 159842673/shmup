@@ -5,8 +5,6 @@ public class enemy : MonoBehaviour
     Rigidbody2D rb;
     
     //cara de l'ennemi
-    public bool canshoot;
-    public float cadence;
     public float pv;
     public float moveSpeed = 4;
     private void FixedUpdate()
@@ -29,8 +27,13 @@ public class enemy : MonoBehaviour
         if (col.gameObject.tag == "player")
         {
             col.gameObject.GetComponent<player>().Damage();
+            pv -= 1f;
+
+
+        }
+        if (pv <= 0)
+        {
             Die();
-            
         }
     }
     void Die()

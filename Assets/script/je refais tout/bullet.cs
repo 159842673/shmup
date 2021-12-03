@@ -1,12 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
-    [SerializeField] float speed;
-    void Update()
+    public float speed = 10f;
+    public Rigidbody2D rb;
+    float pv;
+    void Start()
     {
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
+        rb.velocity = transform.right * -speed;
     }
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "player")
+        {
+            col.gameObject.GetComponent<player>().Damage();
+            pv -= 1f;
+        }
+        if (col.gameObject.GetComponent<player>())
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

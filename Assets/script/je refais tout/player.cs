@@ -5,39 +5,32 @@ public class player : MonoBehaviour
 {
     public InputAction playercontrol;
     public Rigidbody2D rb;
-    public InputAction tirer;
     Vector2 move = Vector2.zero;
 
 
     //caractéristique du perso
     public float speed = 5f;
-    public int pv = 3;
+    public float pv = 2f;
 
     //action
     public Joueur playercontrols;
     private InputAction bouge;
-    private InputAction shoote;
-    [SerializeField] GameObject balle;
-    public void Start()
-    {
-        rb = this.GetComponent<Rigidbody2D>();
-    }
     private void Awake()
     {
         playercontrols = new Joueur();
+    }
+    public void Start()
+    {
+        rb = this.GetComponent<Rigidbody2D>();
     }
     private void OnEnable()
     {
         bouge = playercontrols.Player.Move;
         bouge.Enable();
-        shoote = playercontrols.tirer.shooter;
-        shoote.Enable();
-        shoote.performed += pioupiou;
     }
     private void OnDisable()
     {
         bouge.Disable();
-        shoote.Disable();
     }
     void Update()
     {
@@ -56,24 +49,10 @@ public class player : MonoBehaviour
             Destroy(gameObject);
             Time.timeScale = 0f;
         }
-            
     }
     public void commencer(InputAction.CallbackContext ctx)
     {
         Time.timeScale = 1f;
     }
-
-    public void pioupiou(InputAction.CallbackContext ctx)
-    {
-        Debug.Log("t mort");
-        if (ctx.started)
-        {
-            GameObject.Instantiate(balle, transform.position,transform.rotation);
-
-        }
-    }
-
-    //je tente celui la j'ai pas trouvé au-dessus
-
 
 }
