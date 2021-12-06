@@ -13,10 +13,6 @@ public class movesin : MonoBehaviour
         sincenterY = transform.position.y;
     }
 
-    void Update()
-    {
-
-    }
     private void FixedUpdate()
     {
         Vector2 pos = transform.position;
