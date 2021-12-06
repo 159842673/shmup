@@ -1,11 +1,9 @@
 using UnityEngine;
 
-public class enemy : MonoBehaviour
+public class rightleft : MonoBehaviour
 {
     Rigidbody2D rb;
-    
-    //cara de l'ennemi
-    public float pv;
+
     public float moveSpeed = 4;
     private void FixedUpdate()
     {
@@ -20,18 +18,6 @@ public class enemy : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
-    }
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (pv <= 0)
-        {
-            Die();
-        }
-    }
-    void Die()
-    {
-        Destroy(gameObject);
     }
 }
 
